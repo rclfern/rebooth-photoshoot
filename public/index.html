@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2eee5">
+  <title>Re:Booth — E-Photobooth</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <span class="brand"><span class="brand-logo"><img src="./assets/rebooth-logo.png" alt=""></span><span class="wordmark">Re:Booth</span></span>
+    <span class="subtitle">E-Photobooth designed for your comfort.</span>
+    <span class="motto">A moment, worth keeping.</span>
+  </header>
+  <main>
+    <div class="toolbar">
+      <button id="back" class="text-button" type="button" hidden></button>
+      <ol class="steps" aria-label="Session progress">
+        <li aria-current="step">01 Frame</li><li>02 Capture</li><li>03 Keep</li>
+      </ol>
+    </div>
+    <section id="frame" class="frame-layout">
+      <div>
+        <p class="eyebrow accent">Your moment, reframed</p>
+        <h1 tabindex="-1">Good company?<br>Make little memories.</h1>
+        <p class="intro">Pick a frame, strike three poses, and make something to keep.</p>
+        <div class="card customize">
+          <h2>Make it your own</h2>
+          <p class="eyebrow">01 / Choose a frame</p>
+          <div id="frames" class="frame-options" role="group" aria-label="Choose a frame"></div>
+          <div id="color-options">
+            <p class="eyebrow">02 / Pick your color</p>
+            <div class="color-options">
+              <label class="wheel" title="Open color picker">
+                <input id="color" type="color" value="#6f775e" aria-label="Frame color picker">
+              </label>
+              <div class="color-entry">
+                <label class="eyebrow" for="hex">Frame color</label>
+                <div class="hex-box"><span id="swatch" aria-hidden="true"></span><input id="hex" value="#6F775E" maxlength="7" spellcheck="false" autocomplete="off"></div>
+                <p id="hex-hint">A shade for every kind of day.</p>
+              </div>
+              <div id="presets" class="presets" role="group" aria-label="Color presets"></div>
+            </div>
+          </div>
+        </div>
+        <button class="primary frame-next" id="to-capture" type="button">Let’s take some photos <span aria-hidden="true">→</span></button>
+      </div>
+      <figure class="display frame-display">
+        <p class="eyebrow display-label">The preview</p>
+        <canvas id="frame-strip" width="600" height="1280" role="img" aria-label="Selected frame with three empty photo windows"></canvas>
+        <figcaption><em>A little you, on a little strip.</em><span>3 photos · classic vertical strip</span></figcaption>
+      </figure>
+    </section>
+    <section id="capture" hidden>
+      <h1 tabindex="-1">A little less posing. A little more you.</h1>
+      <p class="intro">Three photos, one after another. Get comfortable and let the good moments happen.</p>
+      <div class="capture-layout">
+        <div>
+          <div class="camera">
+            <p id="camera-placeholder" class="camera-placeholder">Opening camera…</p>
+            <video id="video" autoplay muted playsinline hidden aria-label="Live camera preview"></video>
+            <span id="camera-label" class="camera-label" hidden>Live preview</span>
+            <span id="countdown" class="countdown" aria-hidden="true" hidden></span>
+          </div>
+          <p id="shot-progress" class="shot-progress" hidden>0 of 3 photos taken</p>
+          <div class="capture-actions">
+            <button id="start" class="primary" type="button" disabled>Start 3-photo session <span aria-hidden="true">→</span></button>
+          </div>
+          <p id="status" class="status" role="status"></p>
+        </div>
+        <aside class="card session">
+          <p class="eyebrow">Your little session</p>
+          <h2>Three chances to be you.</h2>
+          <ol><li>Find your light.</li><li>Bring your favorite person. Or just you.</li><li>A new pose for every countdown.</li></ol>
+          <div class="chosen"><h3>Your chosen frame</h3><p id="capture-frame"></p><p class="frame-meta"><span id="capture-swatch"></span>Three-photo strip · portrait</p></div>
+        </aside>
+      </div>
+    </section>
+    <section id="keep" class="keep-layout" hidden>
+      <figure class="display result-display">
+        <p class="eyebrow display-label">Your keepsake</p>
+        <canvas id="result-strip" width="600" height="1280" role="img" aria-label="Your completed three-photo strip"></canvas>
+      </figure>
+      <div class="result-copy">
+        <p class="eyebrow accent">The good kind of repeat</p>
+        <h1 tabindex="-1">Some moments deserve to be Re:Shoot.</h1>
+        <p class="intro">And some are perfect just like this.</p>
+        <dl><div><dt>Your frame</dt><dd id="keep-frame"></dd></div><div><dt>Format</dt><dd>PNG · photo strip</dd></div></dl>
+        <button class="primary" id="download" type="button">Download photo strip <span aria-hidden="true">↓</span></button>
+        <button class="secondary" id="retake" type="button">Go Re:Try it.</button>
+        <p id="download-status" class="status" role="status"></p>
+      </div>
+    </section>
+  </main>
+  <footer>Re:Booth</footer>
+</body>
+</html>
